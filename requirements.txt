@@ -1,0 +1,7 @@
+# some example packages
+pandas
+numpy
+seaborn
+
+# testing packages
+pytest
