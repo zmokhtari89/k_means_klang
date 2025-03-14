@@ -1,8 +1,16 @@
 import pandas as pd
+from pathlib import Path
+from colorama import Fore, Style
 
-def load_data(file_path):
+
+def load_data(
+    cache_path: Path,
+    data_has_header=True):
     """
     loads the dataset
     """
-    df = pd.read_csv(file_path)
+    if cache_path.is_file():
+        print(Fore.BLUE + "\nLoad data from local CSV..." + Style.RESET_ALL)
+        df = pd.read_csv(cache_path, header='infer' if data_has_header else None)
+    print(f"✅ Loading Completed")
     return df

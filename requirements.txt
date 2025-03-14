@@ -1,11 +1,12 @@
-# some example packages
 pandas
 numpy
 seaborn
-matplotlib.pyplot
-sklearn.preprocessing
-sklearn.decomposition
-sklearn.cluster
+matplotlib
+scikit-learn
+librosa
+python-multipart
+colorama
+
 
 # API
 fastapi==0.108.0
