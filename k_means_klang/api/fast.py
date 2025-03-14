@@ -1,5 +1,7 @@
 import os
 import shutil
+from sklearn.preprocessing import MinMaxScaler
+
 from fastapi import FastAPI, File, UploadFile
 from typing import Dict
 from k_means_klang.ml_logic.librosa import extract_features
@@ -27,7 +29,7 @@ def predict(audio_file: UploadFile = File(...)):
 
     # Call the make_prediction function on the temporary file using the temporary filepath
     features = extract_features(temp_file_path)
-    processed_features = preprocess_data(features)
+    processed_features = preprocess_data(features, scaler = MinMaxScaler())
     predictions = cluster_data(processed_features)
 
     # Remove the temporary file
