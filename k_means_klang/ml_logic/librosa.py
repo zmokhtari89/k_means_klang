@@ -107,16 +107,12 @@ def extract_features(file_path):
         features[f'mfcc{i+1}_mean'] = mfcc_means[i]
         features[f'mfcc{i+1}_var'] = mfcc_vars[i]
         
-    ###🚨🚨Need to Add column named 'Label' code
+    # Add the label column with a default value 'no_label'
+    features['label'] = 'no_label'
     
     print("✅ data transformed into features")
     
-    Create a pandas DataFrame
-    df = pd.DataFrame([features])
-    
-    print("✅ dataframe created, and ready for preprosessing")
-    
-    return df
+    return features 
 
 
 
