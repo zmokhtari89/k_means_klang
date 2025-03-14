@@ -18,4 +18,4 @@ def cluster_data(X_pca, n_clusters=6):
     """
     kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
     clusters = kmeans.fit_predict(X_pca)
-    return clusters, kmeans
+    return clusters
