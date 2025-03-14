@@ -2,9 +2,9 @@ import os
 import shutil
 from fastapi import FastAPI, File, UploadFile
 from typing import Dict
-from k-means-klang.ml_logic.librosa import extract_features
-from k-means-klang.ml_logic.preprocessor import preprocess_data
-from k-means-klang.ml_logic.model import cluster_data
+from k_means_klang.ml_logic.librosa import extract_features
+from k_means_klang.ml_logic.preprocessor import preprocess_data
+from k_means_klang.ml_logic.model import cluster_data
 
 app = FastAPI()
 
