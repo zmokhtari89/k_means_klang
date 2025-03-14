@@ -9,7 +9,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 #----------------------------------------------------------------------------------------
-#OPTION FOR FETCHING AND TRANSFORMING AUDIO FILE(S) FROM ONE FOLDER
+#OPTION FOR FETCHING AND TRANSFORMING AUDIO FILE FROM ONE FOLDER
 #---------------------------------------------------------------------------------------
 
 def extract_features(file_path):
