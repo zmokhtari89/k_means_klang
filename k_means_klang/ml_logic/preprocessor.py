@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
+from sklearn.preprocessing import MinMaxScaler
 
 def preprocess_data(df, scaler=None):
     """
@@ -11,7 +11,6 @@ def preprocess_data(df, scaler=None):
         scaler = MinMaxScaler()
         X_scaled = pd.DataFrame(scaler.fit_transform(X_features), columns=X_features.columns)
     else:
-        scaler = scaler
         X_scaled = pd.DataFrame(scaler.fit_transform(X_features), columns=X_features.columns)
 
     print(f"✅ Preprocessing Completed")
