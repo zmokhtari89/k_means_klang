@@ -111,7 +111,6 @@ def extract_features(file_path):
     features['label'] = 'no_label'
 
     print("✅ data transformed into features")
-    print(features)
 
     return features
 
