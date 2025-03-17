@@ -1,13 +1,14 @@
 import os
 import shutil
 import pandas as pd
+import pickle
 from sklearn.preprocessing import MinMaxScaler
+
+from pathlib import Path
 
 from fastapi import FastAPI, File, UploadFile
 from typing import Dict
 from k_means_klang.ml_logic.librosa import extract_features
-from k_means_klang.ml_logic.preprocessor import preprocess_data
-from k_means_klang.ml_logic.model import cluster_data
 
 app = FastAPI()
 
@@ -31,10 +32,22 @@ def predict(audio_file: UploadFile = File(...)):
     # Call the make_prediction function on the temporary file using the temporary filepath
     features = extract_features(temp_file_path)
     features_df = pd.DataFrame(features, index = [0])
-    processed_features, scaler = preprocess_data(features_df)   # Issue here with the scaler, it is not fitted on the model but on the test data
-    predictions = cluster_data(processed_features, n_clusters=1)    # Issue here, it doesn't work with more than 1 clusters, wrong predicitions
+    X_features = features_df.drop(["label", "filename", "length"], axis=1, errors="ignore")
 
-    # Remove the temporary file
-    os.remove(temp_file_path)
+    # Load and apply scaler
+    my_scaler = Path(__file__).resolve().parent.parent / "ml_logic" / "pickles" / "scaler.pkl"
+    my_scaler=pickle.load(open(my_scaler, "rb"))
+
+    X_new_scaled = my_scaler.transform(X_features)
+
+    # Load and apply PCA
+    pca = Path(__file__).resolve().parent.parent / "ml_logic" / "pickles" / "pca.pkl"
+    pca = pickle.load(open(pca, 'rb'))
+    X_new_pca = pca.transform(X_new_scaled)
+
+    # Load and apply kmeans
+    kmeans = Path(__file__).resolve().parent.parent / "ml_logic" / "pickles" / "kmeans.pkl"
+    kmeans = pickle.load(open(kmeans, 'rb'))
+    predictions = kmeans.predict(X_new_pca)
 
     return {"predicted_cluster": predictions.tolist()[0]}
