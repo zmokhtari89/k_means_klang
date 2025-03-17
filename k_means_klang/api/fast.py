@@ -31,8 +31,8 @@ def predict(audio_file: UploadFile = File(...)):
     # Call the make_prediction function on the temporary file using the temporary filepath
     features = extract_features(temp_file_path)
     features_df = pd.DataFrame(features, index = [0])
-    processed_features, scalar = preprocess_data(features_df)
-    predictions = cluster_data(processed_features, n_clusters=1)
+    processed_features, scaler = preprocess_data(features_df)   # Issue here with the scaler, it is not fitted on the model but on the test data
+    predictions = cluster_data(processed_features, n_clusters=1)    # Issue here, it doesn't work with more than 1 clusters, wrong predicitions
 
     # Remove the temporary file
     os.remove(temp_file_path)
