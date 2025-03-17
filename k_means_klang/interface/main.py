@@ -32,8 +32,6 @@ if __name__ == "__main__":
         sys.exit(1)
 
     csv_path = Path(sys.argv[1])
-    # if not csv_path.is_file():
-    #     raise ValueError(f"The file at {csv_path} does not exist or is not a valid file.")
 
     try:
         result = classify_audio(csv_path)

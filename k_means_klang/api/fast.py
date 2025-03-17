@@ -1,5 +1,6 @@
 import os
 import shutil
+import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
 from fastapi import FastAPI, File, UploadFile
@@ -12,7 +13,7 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {'greeting':"hello"}
+    return {'project':"k_means_klang"}
 
 @app.post("/predict")
 def predict(audio_file: UploadFile = File(...)):
@@ -29,10 +30,11 @@ def predict(audio_file: UploadFile = File(...)):
 
     # Call the make_prediction function on the temporary file using the temporary filepath
     features = extract_features(temp_file_path)
-    processed_features = preprocess_data(features, scaler = MinMaxScaler())
-    predictions = cluster_data(processed_features)
+    features_df = pd.DataFrame(features, index = [0])
+    processed_features, scaler = preprocess_data(features_df)   # Issue here with the scaler, it is not fitted on the model but on the test data
+    predictions = cluster_data(processed_features, n_clusters=1)    # Issue here, it doesn't work with more than 1 clusters, wrong predicitions
 
     # Remove the temporary file
     os.remove(temp_file_path)
 
-    return predictions
+    return {"predicted_cluster": predictions.tolist()[0]}
