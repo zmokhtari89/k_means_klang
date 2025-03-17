@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY k_means_klang k_means_klang
 
-CMD ["uvicorn", "k_means_klang.api.fast:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD uvicorn k_means_klang.api.fast:app --host 0.0.0.0 --port $PORT
