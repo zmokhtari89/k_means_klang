@@ -9,8 +9,8 @@ This project was developed during Le Wagon's Data Science & AI Bootcamp (March 2
 - `raw_data/` - Audio datasets
 - `notebooks/` - Exploration notebooks
 - `k_means_klang/` - Main code:
-  - `api/fast.py` - FastAPI backend
-  - `interface/main.py` - Streamlit app
+  - `api/fast.py` - FastAPI backend (predicts clusters for user-uploaded audio)
+  - `interface/main.py` - Processes CSV files of pre-extracted audio features
   - `ml_logic/` - ML core (feature extraction, preprocessing, model)
   - `pickles/` - Saved models (K-Means, PCA, Scaler)
 
