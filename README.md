@@ -2,6 +2,8 @@
 
 **Live App:** [https://kmeansklang.streamlit.app/](https://kmeansklang.streamlit.app/)
 
+> **Note:** The live app is a demo hosted on a free tier and may not be running continuously due to hosting limitations. If you encounter an error, please try again later or follow the installation steps to run the app locally.
+
 This project was developed during Le Wagon's Data Science & AI Bootcamp (March 2025) by a team of four. It clusters audio samples using **K-Means** based on acoustic features extracted with the **Librosa** library. The project uses a variety of audio features—such as Mel-frequency cepstral coefficients (MFCCs), spectral contrast, and harmonic features—to find hidden patterns in music beyond genre.
 
 ---
